@@ -30,14 +30,24 @@
         });
       }
 
-      function displayMatch(e) {
-        console.log(e.target.value);
+      function displayMatch() {
+        const matchArray = findMatch(this.value, cities);
+        const html = matchArray
+          .map((place) => {
+            return `<li>
+              <span class="name">${place.city}, ${place.state}</span>
+              <span class="poulation">Population: ${place.population}</span>
+            </li>`;
+          })
+          .join("");
+        suggestions.innerHTML = html;
       }
 
       let searchInput = document.querySelector(".search");
       let suggestions = document.querySelector(".suggestions");
 
       searchInput.addEventListener("change", displayMatch);
+      searchInput.addEventListener("keyup", displayMatch);
     </script>
   </body>
 </html>
